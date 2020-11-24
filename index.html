@@ -12,19 +12,48 @@
     <script src="./script/app.js"></script>
 </head>
 <body>
+    <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="arrow" viewBox="0 0 49.73 30.64">
+            <title>arrow</title>
+            <path style="fill:#F7EAFE;" d="M49.32,6.78a1.43,1.43,0,0,0,0-2L45,.41a1.42,1.42,0,0,
+            0-2,0L25.87,17.5a1.43,1.43,0,0,1-2,0L6.78.41a1.43,1.43,0,0,0-2,0L.41,4.77a1.43,1.43
+            ,0,0,0,0,2L17.5,23.86l1,1,1,1,4.35,4.36a1.43,1.43,0,0,0,2,0l4.36-4.36,2-2Z"/>
+        </symbol>
+    </svg>
     <div class="o-container o-container--border">
         <div class="o-row o-row--lg">
             <h1 class="u-align-text-center u-text-lg">TopNews</h1>
         </div>
         <div class="o-row">
-            <div class="o-layout o-layout--align-center o-layout--gutter o-layout--column c-data js-data">
-                <span style="width: 100%;" class="c-category">BUSINESS</span>
-                <span style="width: 50%;" class="c-category">ENTERTAINMENT</span>
-                <span style="width: 40%;" class="c-category">HEALTH</span>
-                <span style="width: 50%;" class="c-category">SCIENCE</span>
-                <span style="width: 80%;" class="c-category">SPORTS</span>
-                <span style="width: 60%;" class="c-category">TECHNOLOGY</span>
-                <span style="width: 50%;" class="c-category">POLITICS</span>
+            <div class="o-layout o-layout--align-center-bp1 o-layout--gutter o-layout--column c-data js-data">
+                <div style="width: 100%;" class="o-layout o-layout--column o-layout--align-center-bp1 c-data__item">
+                    <span class="c-data__name">BUSINESS</span>
+                    <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
+                </div>
+                <div style="width: 50%;" class="o-layout o-layout--column o-layout--align-center-bp1 c-data__item">
+                    <span class="c-data__name">ENTERTAINMENT</span>
+                    <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
+                </div>
+                <div style="width: 40%;" class="o-layout o-layout--column o-layout--align-center-bp1 c-data__item">
+                    <span class="c-data__name">HEALTH</span>
+                    <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
+                </div>
+                <div style="width: 50%;" class="o-layout o-layout--column o-layout--align-center-bp1 c-data__item">
+                    <span class="c-data__name">SCIENCE</span>
+                    <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
+                </div>
+                <div style="width: 80%;" class="o-layout o-layout--column o-layout--align-center-bp1 c-data__item">
+                    <span class="c-data__name">SPORTS</span>
+                    <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
+                </div>
+                <div style="width: 60%;" class="o-layout o-layout--column o-layout--align-center-bp1 c-data__item">
+                    <span class="c-data__name">TECHNOLOGY</span>
+                    <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
+                </div>
+                <div style="width: 50%;" class="o-layout o-layout--column o-layout--align-center-bp1 c-data__item">
+                    <span class="c-data__name">POLITICS</span>
+                    <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
+                </div>
             </div>
         </div>
     </div>
