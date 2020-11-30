@@ -20,7 +20,6 @@
     --global-color-alpha-dark: #990000;
 
     /* text */
-    --global-fontsize-sm: var(--global-baseline); /* 8px */
     --global-fontsize: calc(var(--global-baseline) * 2); /* 16px */
     --global-fontsize-md: calc(var(--global-baseline) * 2.5);
     --global-fontsize-lg: calc(var(--global-baseline) * 3); /* 24px */
@@ -52,7 +51,7 @@ html {
     font-family: dinosaur, 'Work Sans', Helvetica, arial, sans-serif;
     box-sizing: border-box;
     color: var(--global-color-neutral-light);
-    background-color: #CC0000;
+    background-color: var(--global-color-alpha);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -481,6 +480,30 @@ input::placeholder {
     -webkit-appearance: none;
 }
 
+.o-button-reset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+    outline: none;
+}
+
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
@@ -523,6 +546,13 @@ input::placeholder {
     font-size: 20px;
 }
 
+
+/*
+    components: data
+    ---
+    component to style data items
+*/
+
 .c-data {
     max-width: 600px;
     margin-left: auto;
@@ -532,59 +562,71 @@ input::placeholder {
 .c-data__item {
     --fontsize: calc(var(--global-baseline) * 2);
     --lineheight: calc(var(--fontsize) * 1.5);
-    --height: calc(var(--lineheight) + calc(var(--global-baseline) * 2));
+    --min-height: calc(var(--lineheight) + calc(var(--global-baseline) * 2));
     font-size: var(--fontsize);
     line-height: var(--lineheight);
+    text-align: left;
     margin-bottom: var(--global-whitespace-xs);
-    height: var(--height);
+    min-height: var(--min-height);
     background-color: var(--global-color-alpha-dark);
     border-radius: 8px;
-    transition: height .2s ease-out;
-    flex-wrap: nowrap;
+    transition: min-height 200ms ease-out;
+    flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
+    order: 1;
 }
 
 .c-data__item:hover {
-    --height: calc(var(--lineheight) + calc(var(--global-baseline) * 2) + 16px);
-    /* transform: scale(1.2, 1.2); */
-    transition: height .2s ease-out;
+    --min-height: calc(var(--lineheight) + calc(var(--global-baseline) * 2) + 16px);
+    transition: min-height 200ms ease-out;
 }
 
-.c-data__item:hover > .c-arrow {
+.c-data__item:focus {
+    --min-height: calc(var(--lineheight) + calc(var(--global-baseline) * 2) + 50px);
+    transition: min-height 200ms ease-out;
+}
+
+.c-data__name {
+    overflow: hidden;
+    padding: var(--global-baseline);
+    width: 80%;
+}
+
+.c-data__meta {
+    overflow: hidden;
+    display: none;
+    font-size: var(--global-fontsize);
+    padding: 0 var(--global-baseline) 0 var(--global-baseline);
+    order: 3;
+    width: 100%;
+}
+
+.c-data__item:focus > .c-data__meta {
     display: block;
 }
-
-.c-data__item:active {
-    --height: calc(var(--lineheight) + calc(var(--global-baseline) * 2) + 80px);
-}
-
-/* .c-data__item:active > .c-arrow {
-    opacity: 0;
-    transition: opacity 200ms;
-} */
 
 @media(min-width: 576px) {
     .c-data__item {
         --fontsize: calc(var(--global-baseline) * 3);
         text-align: center;
+        flex-direction: column;
     }
-}
 
-.c-data__name {
-    padding: var(--global-baseline);
-}
+    .c-data__name {
+        width: 100%;
+    }
 
-.c-data__meta {
-    display: none;
-    opacity: 0;
-    font-size: var(--global-fontsize-md);
-    transition: opacity 300ms;
-}
-
-.c-data__item:active > .c-data__meta {
-    display: block;
-    opacity: 1;
-    transition: opacity 10s;
+    .c-data__item:hover > .c-arrow,
+    .c-data__item:focus > .c-arrow {
+        display: block;
+        transition: min-height 200ms ease-out;
+    }
+    
+    .c-data__meta {
+        font-size: var(--global-fontsize-md);
+        padding: 0 var(--global-whitespace-xs) 0 var(--global-whitespace-xs);
+    }
 }
 
 
@@ -595,11 +637,24 @@ input::placeholder {
 */
 
 .c-arrow {
-    display: none;
-    height: 16px;
+    display: block;
+    overflow: hidden;
+    width: 20%;
+    height: 8px;
     width: 16px;
-    padding-bottom: 8px;
+    margin: 4px 0;
+    margin-right: 4px;
     transition: opacity 200ms;
+    order: 2;
+}
+
+@media(min-width: 576px) {
+    .c-arrow {
+        display: none;
+        margin: 0 0 8px 0;
+        width: 100%;
+        order: 4;
+    }
 }
 
 
