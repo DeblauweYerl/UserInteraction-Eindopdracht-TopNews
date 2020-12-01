@@ -9,35 +9,30 @@ let processData = function(data, category) {
     categoryValues.push(data.totalResults);
 }
 
-let showResults = function(data){
-    let max = categoryValues.max;
+let showResults = function(){
+    html_data.innerHTML = "";
+    let max = Math.max(...categoryValues);
     innerHTMLdata = "";
-    innerHTMLdata += 
-    `<button style="width: ${data.value/max*100}%;" class="o-button-reset o-layout o-layout--align-center-bp1 c-data__item">
-        <span class="c-data__name">${data.key}</span>
-        <p class="c-data__meta">Total top articles found: ${data.value}</p>
-        <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
-    </button>`;
+    console.log(`max= ${max}`);
+    for (var category in categories) {
+        console.log(`categoryKeyValue = ${category} - ${categories[category]}`);
+        innerHTMLdata += 
+        `<button style="width: ${categories[category]/max*100}%;" class="o-button-reset o-layout o-layout--align-center-bp1 c-data__item">
+            <span class="c-data__name">${category}</span>
+            <p class="c-data__meta">Total top articles found: ${categories[category]}</p>
+            <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
+        </button>`;
+    }
     html_data.innerHTML += innerHTMLdata;
 }
 
 let getAPIs = async function(){
-    // html_data.innerHTML = "";
-    // for (i = 0; i < categories.length; i++) {
-    //     let url = `https://newsapi.org/v2/top-headlines?category=${category}&apiKey=cc26c03f571849f18a51b99646a7982c`;
-    //     if (categories.indexOf(category) != categories.length-1) { 
-    //         fetchFunction(url, category);
-    //     }
-    //     else {
-    //         await fetchFunction(url, categories[i].key);
-    //     }
-    // }
-    let url;
+    // let url;
     for (var category in categories) {
-        url = `https://newsapi.org/v2/top-headlines?category=${category}&apiKey=cc26c03f571849f18a51b99646a7982c`;
+        // url = `https://newsapi.org/v2/top-headlines?category=${category}&apiKey=cc26c03f571849f18a51b99646a7982c`;
         await fetchFunction(url, category);
-        showResults();
     }
+    showResults();
 };
 
 const fetchFunction = async function(url, category) {

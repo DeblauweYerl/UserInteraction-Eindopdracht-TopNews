@@ -588,6 +588,7 @@ input::placeholder {
 }
 
 .c-data__name {
+    text-transform: uppercase;
     overflow: hidden;
     padding: var(--global-baseline);
     width: 80%;
