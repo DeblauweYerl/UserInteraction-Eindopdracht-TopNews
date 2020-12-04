@@ -4,28 +4,6 @@ let html_data, innerHTMLdata;
 
 let customHeaders = new Headers();
 
-let processData = function(data, category) {
-    categories[category] = data.totalResults;
-    categoryValues.push(data.totalResults);
-}
-
-let showResults = function(){
-    html_data.innerHTML = "";
-    let max = Math.max(...categoryValues);
-    innerHTMLdata = "";
-    console.log(`max= ${max}`);
-    for (var category in categories) {
-        console.log(`categoryKeyValue = ${category} - ${categories[category]}`);
-        innerHTMLdata += 
-        `<button style="width: ${categories[category]/max*100}%;" class="o-button-reset o-layout o-layout--align-center-bp1 c-data__item">
-            <span class="c-data__name">${category}</span>
-            <p class="c-data__meta">Total top articles found: ${categories[category]}</p>
-            <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
-        </button>`;
-    }
-    html_data.innerHTML += innerHTMLdata;
-}
-
 let getAPIs = async function(){
     // let url;
     for (var category in categories) {
@@ -45,7 +23,41 @@ const fetchFunction = async function(url, category) {
 	}
 	catch (error) {
 		console.error("An error occured: ", error);
-	}
+	};
+};
+
+let processData = function(data, category) {
+    categories[category] = data.totalResults;
+    categoryValues.push(data.totalResults);
+};
+
+let showResults = function(){
+    const categories_sorted = sortDict(categories);
+    let max = Math.max(...categoryValues);
+    console.log(categories_sorted);
+    html_data.innerHTML = "";
+    innerHTMLdata = "";
+    console.log(`max= ${max}`);
+    for (var category of categories_sorted) {
+        console.log(`categoryKeyValue = ${category[0]} - ${category[1]}`);
+        innerHTMLdata += 
+        `<button style="width: ${category[1]/max*100}%;" class="o-button-reset o-layout o-layout--align-center-bp1 c-data__item">
+            <span class="c-data__name">${category[0]}</span>
+            <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
+            <p class="c-data__meta">Total top articles found: ${category[1]}</p>
+        </button>`;
+    };
+    html_data.innerHTML += innerHTMLdata;
+};
+
+let sortDict = function(dict) {
+    var items = Object.keys(dict).map(function(key) {
+        return [key, dict[key]];
+      });
+    items.sort(function(first, second) {
+        return second[1] - first[1];
+    });
+    return items;
 }
 
 document.addEventListener('DOMContentLoaded', function() {

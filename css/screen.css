@@ -19,15 +19,13 @@
     --global-color-alpha: #CC0000;
     --global-color-alpha-dark: #990000;
 
-    /* text */
-    --global-fontsize: calc(var(--global-baseline) * 2); /* 16px */
-    --global-fontsize-md: calc(var(--global-baseline) * 2.5);
-    --global-fontsize-lg: calc(var(--global-baseline) * 3); /* 24px */
-    --global-lineheight: calc(var(--global-fontsize) * 1.5); /* 24px */
+    /* font size */
+    --global-fontsize: 1rem; /* 16px */
+    --global-fontsize-md: 1.25rem; /* 20px */
 
     /* whitespace */
     --global-whitespace-xxs: calc(var(--global-baseline) / 2); /* 4px */
-    --global-baseline: 0.5rem;
+    --global-baseline: 0.5rem; /* 8px */
     --global-whitespace-xs: calc(var(--global-baseline) * 2); /* 16px */
     --global-whitespace-sm: calc(var(--global-baseline) * 3); /* 24px */
     --global-whitespace-md: calc(var(--global-baseline) * 4); /* 32px */
@@ -47,13 +45,17 @@
 
 html {
     font-size: var(--global-fontsize);
-    line-height: var(--global-lineheight);
+    line-height: 1.5;
     font-family: dinosaur, 'Work Sans', Helvetica, arial, sans-serif;
     box-sizing: border-box;
     color: var(--global-color-neutral-light);
     background-color: var(--global-color-alpha);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    overflow: hidden;
 }
 
 *,
@@ -70,14 +72,14 @@ html {
 */
 
 ::-moz-selection {
-    background: red;
-    color: white;
+    background: white;
+    color: red;
     text-shadow: none;
 }
 
 ::selection {
-    background: red;
-    color: white;
+    background: white;
+    color: red;
     text-shadow: none;
 }
 
@@ -110,8 +112,8 @@ h3 {
 
 h1 {
     font-family: chippewa-falls;
-    font-size: 2.25em;
-    line-height: 48px;
+    font-size: 2.25rem;
+    line-height: 3rem;
     margin: 0 0 var(--global-whitespace-xs);
 }
 
@@ -183,8 +185,8 @@ hr {
 }
 
 a {
-    color: red;
-    outline-color: red;
+    color: white;
+    outline-color: white;
     outline-width: medium;
     outline-offset: 2px;
 }
@@ -478,29 +480,6 @@ input::placeholder {
 
     /* Corrects inability to style clickable `input` types in iOS */
     -webkit-appearance: none;
-}
-
-.o-button-reset {
-    border: none;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    overflow: visible;
-    background: transparent;
-
-    /* inherit font & color from ancestor */
-    color: inherit;
-    font: inherit;
-
-    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-    line-height: normal;
-
-    /* Corrects font smoothing for webkit */
-    -webkit-font-smoothing: inherit;
-    -moz-osx-font-smoothing: inherit;
-
-    /* Corrects inability to style clickable `input` types in iOS */
-    -webkit-appearance: none;
     outline: none;
 }
 
@@ -542,8 +521,8 @@ input::placeholder {
 */
 
 .c-button {
-    color: #F7EAFE;
-    font-size: 20px;
+    color: var(--global-color-neutral-light);
+    font-size: 1.25rem; /*  */
 }
 
 
@@ -560,73 +539,60 @@ input::placeholder {
 }
 
 .c-data__item {
-    --fontsize: calc(var(--global-baseline) * 2);
-    --lineheight: calc(var(--fontsize) * 1.5);
-    --min-height: calc(var(--lineheight) + calc(var(--global-baseline) * 2));
-    font-size: var(--fontsize);
-    line-height: var(--lineheight);
-    text-align: left;
+    --c-data__item-content-height: calc(var(--global-baseline) * 2);
+    --c-data__item-height: calc(var(--c-data__name-lineheight) + calc(var(--global-baseline) * 2));
+    --c-data__name-lineheight: calc(var(--c-data__item-content-height) * 1.5);
+    font-size: var(--c-data__item-content-height);
     margin-bottom: var(--global-whitespace-xs);
-    min-height: var(--min-height);
+    height: var(--c-data__item-height);
     background-color: var(--global-color-alpha-dark);
     border-radius: 8px;
-    transition: min-height 200ms ease-out;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    order: 1;
-}
-
-.c-data__item:hover {
-    --min-height: calc(var(--lineheight) + calc(var(--global-baseline) * 2) + 16px);
-    transition: min-height 200ms ease-out;
+    display: flex;
+    overflow: hidden;
+    transition: height 200ms ease-out;
 }
 
 .c-data__item:focus {
-    --min-height: calc(var(--lineheight) + calc(var(--global-baseline) * 2) + 50px);
-    transition: min-height 200ms ease-out;
+    --c-data__item-height: calc(var(--c-data__name-lineheight) + calc(var(--global-baseline) * 2) + 56px);
+}
+
+.c-data__item:hover {
+    cursor: pointer;
 }
 
 .c-data__name {
+    line-height: var(--c-data__name-lineheight);
     text-transform: uppercase;
     overflow: hidden;
     padding: var(--global-baseline);
-    width: 80%;
 }
 
 .c-data__meta {
-    overflow: hidden;
-    display: none;
     font-size: var(--global-fontsize);
-    padding: 0 var(--global-baseline) 0 var(--global-baseline);
-    order: 3;
+    line-height: 1.2;
+    text-align: left;
+    padding: var(--global-baseline);
+    overflow: hidden;
     width: 100%;
-}
-
-.c-data__item:focus > .c-data__meta {
-    display: block;
 }
 
 @media(min-width: 576px) {
     .c-data__item {
-        --fontsize: calc(var(--global-baseline) * 3);
-        text-align: center;
-        flex-direction: column;
+        margin-bottom: var(--global-whitespace-sm);
+        --c-data__item-content-height: calc(var(--global-baseline) * 3);
     }
 
     .c-data__name {
-        width: 100%;
+        padding: var(--global-baseline) var(--global-whitespace-xs);
     }
-
-    .c-data__item:hover > .c-arrow,
-    .c-data__item:focus > .c-arrow {
-        display: block;
-        transition: min-height 200ms ease-out;
+    
+    .c-data__item:focus {
+        --c-data__item-height: calc(var(--c-data__name-lineheight) + calc(var(--global-baseline) * 2) + 76px);
     }
     
     .c-data__meta {
         font-size: var(--global-fontsize-md);
-        padding: 0 var(--global-whitespace-xs) 0 var(--global-whitespace-xs);
+        padding: var(--global-whitespace-xs);
     }
 }
 
@@ -638,23 +604,21 @@ input::placeholder {
 */
 
 .c-arrow {
-    display: block;
-    overflow: hidden;
-    width: 20%;
     height: 8px;
     width: 16px;
-    margin: 4px 0;
-    margin-right: 4px;
-    transition: opacity 200ms;
-    order: 2;
+    transition: transform 200ms;
+    margin: calc(var(--global-baseline) * 2);
+}
+
+.c-data__item:focus .c-arrow {
+    opacity: 1;
+    transform: scaleY(-1);
 }
 
 @media(min-width: 576px) {
     .c-arrow {
-        display: none;
-        margin: 0 0 8px 0;
-        width: 100%;
-        order: 4;
+        height: var(--c-data__item-content-height);
+        margin: 14px;
     }
 }
 
