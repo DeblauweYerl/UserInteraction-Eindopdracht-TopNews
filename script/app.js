@@ -18,7 +18,6 @@ const fetchFunction = async function(url, category) {
         const response = await fetch(url, { headers: customHeaders });
 		const data = await response.json();
 		console.log(data);
-		// Als dat gelukt is, gaan we naar onze showResult functie.
 		processData(data, category);
 	}
 	catch (error) {
@@ -41,7 +40,7 @@ let showResults = function(){
     for (var category of categories_sorted) {
         console.log(`categoryKeyValue = ${category[0]} - ${category[1]}`);
         innerHTMLdata += 
-        `<button style="width: ${category[1]/max*100}%;" class="o-button-reset o-layout o-layout--align-center-bp1 c-data__item">
+        `<button style="width: ${category[1]/max*100}%;" class="o-button-reset o-layout o-layout--justify-space-between c-data__item">
             <span class="c-data__name">${category[0]}</span>
             <svg class="c-arrow"><use xlink:href="#arrow"></use></svg>
             <p class="c-data__meta">Total top articles found: ${category[1]}</p>

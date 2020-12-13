@@ -8,32 +8,43 @@
     <link rel="stylesheet" href="https://use.typekit.net/zyr3sbf.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/screen.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/Assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/Assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/Assets/favicon/safari-pinned-tab.svg" color="#cc0000">
+    <link rel="shortcut icon" href="/Assets/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#dd0000">
+    <meta name="msapplication-config" content="/Assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    
 </head>
 <body>
     <div class="o-container u-mb-lg">
         <div class="o-row o-row--lg">
-            <h1 class="u-align-text-center u-text-lg">TopNews</h1>
+            <h1 class="u-align-text-center">TopNews</h1>
         </div>
         <div class="o-row">
-            <div class="o-layout o-layout--gutter-lg o-layout--align-center o-layout--justify-center">
-                <picture>
-                    <img src="Assets\Screenshot 2020-11-04 145541.png" alt="Dr. Jeremy McDuffie, Tennessee Oncology">
+            <form class="o-grid o-grid--align-center">
+                <picture class="c-mockup u-x-span-12 u-x-span-4-bp2 u-y-span-6 u-y-span-12-bp2">
+                    <img class="c-mockup__image" src="Assets\mockup.png" alt="Dr. Jeremy McDuffie, Tennessee Oncology">
+                    <figcaption><a class="o-figcaption" href="http://www.freepik.com" target="_blank">Designed by zlatko_plamenov / Freepik</a></figcaption>
                 </picture>
-                <div class="o-layout__item u-1-of-2-bp2">
-                    <p class="u-text-md">TopNews brings you an overview of the most 
-                        popular categories in online newspapers 
-                        all across the world and how popular
-                        these categories actually are compared
-                        to each other</p>
-                    <div class="o-layout o-layout--gutter">
-                        <div class="o-layout__item u-2-of-3-bp1 u-mb-md">
-                            <input class="c-input c-input__text" type="text" placeholder="Your email">
-                        </div>
-                        <div class="o-layout__item u-1-of-3-bp1">
-                            <button class="o-button-reset c-input c-button" type="submit">Notify me!</button>
-                        </div>
-                    </div>
+                <p class="u-text-md u-x-span-12 u-x-span-8-bp2 u-y-span-4 u-y-span-8-bp2">TopNews brings you an overview of the most 
+                    popular categories in online newspapers 
+                    all across the world and how popular
+                    these categories actually are compared
+                    to each other.
+                </p>
+                <div class="u-position-relative u-x-span-12 u-x-span-8-bp2 u-x-span-5-bp3 u-y-span-2-bp2">
+                    <label class="c-label">E-mail</label>
+                    <input class="c-input c-input__text" type="email" placeholder="myname@example.com" required>
                 </div>
+                <div class="u-x-span-12 u-x-span-8-bp2 u-x-span-3-bp3 u-y-span-2-bp2">
+                    <button class="o-button-reset c-input c-button" type="submit">Notify me!</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
