@@ -1,14 +1,4 @@
 /*------------------------------------*\
-#FONTS
-\*------------------------------------*/
-
-/* @font-face {
-    font-family: chippewa-falls, sans-serif;
-    font-weight: 500;
-    font-style: normal;
-} */
-
-/*------------------------------------*\
 #Variables
 \*------------------------------------*/
 
@@ -24,9 +14,21 @@
     --global-color-alpha-xx-dark: #550000;
     
     /* borders */
+    --global-border-input: 2px solid var(--global-color-alpha-dark);
     --global-border-light: 2px solid var(--global-color-neutral-light);
 
-    /* font size */
+    --global-border-color-light: var(--global-color-neutral-light);
+
+    --global-border-radius-sm: 8px;
+    --global-border-radius: 16px;
+    
+    /* transitions */
+    --global-transition-timing-alpha: 200ms;
+
+    --global-transition-height: height var(--global-transition-timing-alpha) ease-out;
+    --global-transition-transform: transform var(--global-transition-timing-alpha);
+
+    /* fonts */
     --global-fontsize-sm: 0.75rem; /* 12px */
     --global-fontsize: 1rem; /* 16px */
     --global-fontsize-md: 1.25rem; /* 20px */
@@ -34,6 +36,10 @@
     --global-fontsize-xl: 1.625rem; /* 26px */
     --global-fontsize-xxl: 2rem; /* 32px */
     --global-fontsize-xxxl: 4rem; /* 64px */
+
+    --global-fontweight-regular: 400;
+    --global-fontweight-medium: 500;
+    --global-fontweight-semibold: 600;
 
     /* whitespace */
     --global-whitespace-xxs: calc(var(--global-baseline) / 2); /* 4px */
@@ -117,7 +123,7 @@ img {
 h1,
 h2,
 h3 {
-    font-weight: 500;
+    font-weight: var(--global-fontweight-medium);
 }
 
 h1 {
@@ -140,7 +146,7 @@ h4,
 h5,
 h6 {
     font-size: var(--global-fontsize);
-    font-weight: 600;
+    font-weight: var(--global-fontweight-semibold);
     margin: 0 0 var(--global-whitespace-xs);
 }
 
@@ -176,7 +182,7 @@ blockquote * {
 }
 
 figcaption {
-    font-weight: 400;
+    font-weight: var(--global-fontweight-regular);
     font-size: var(--global-fontsize-sm);
     margin-top: var(--global-baseline);
     text-align: center;
@@ -249,14 +255,14 @@ input::placeholder {
     padding-bottom: var(--global-whitespace-md);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
     .o-row {
         padding-left: var(--global-whitespace-md);
         padding-right: var(--global-whitespace-md);
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 62em) {
     .o-row--xl {
         padding-top: var(--global-whitespace-3xl);
         padding-bottom: var(--global-whitespace-2xl);
@@ -276,13 +282,13 @@ input::placeholder {
     width: 100%;
 }
 
-@media(min-width: 576px) {
+@media(min-width: 36em) {
     .o-container {
         max-width: 35em;
     }
 }
 
-@media(min-width: 768px) {
+@media(min-width: 48em) {
     .o-container {
         max-width: 68.75em;
     }
@@ -302,14 +308,14 @@ input::placeholder {
     padding-top: var(--global-whitespace-md);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
     .o-section--lg + .o-section--lg,
     .o-section--xl + .o-section--xl {
         padding-top: var(--global-whitespace-md);
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 62em) {
     .o-section--xl + .o-section--xl {
         padding-top: var(--global-whitespace-2xl);
     }
@@ -462,8 +468,8 @@ input::placeholder {
 .c-input {
     font-family: dinosaur;
     background-color: var(--global-color-alpha-dark);
-    border: none;
-    border-radius: 16px;
+    border: var(--global-border-input);
+    border-radius: var(--global-border-radius);
     padding: calc(var(--global-baseline) * 1.5) var(--global-baseline);
     color: #F7EAFE;
     width: 100%;
@@ -471,7 +477,7 @@ input::placeholder {
 }
 
 .c-input:focus {
-    border: var(--global-border-light);
+    border-color: var(--global-border-color-light);
 }
 
 .c-input__text {
@@ -533,10 +539,10 @@ input::placeholder {
     margin-bottom: var(--global-whitespace-xs);
     height: var(--c-data__item-height);
     background-color: var(--global-color-alpha-dark);
-    border-radius: 8px;
+    border-radius: var(--global-border-radius-sm);
     display: flex;
     overflow: hidden;
-    transition: height 200ms ease-out;
+    transition: var(--global-transition-height);
 }
 
 .c-data__item:focus {
@@ -563,7 +569,7 @@ input::placeholder {
     width: 100%;
 }
 
-@media(min-width: 576px) {
+@media(min-width: 36em) {
     .c-data__item {
         /* margin-bottom: var(--global-whitespace-sm); */
         --c-data__item-content-height: calc(var(--global-baseline) * 3);
@@ -594,7 +600,7 @@ input::placeholder {
     --c-arrow-height: var(--global-baseline);
     height: var(--c-arrow-height);
     width: calc(var(--global-baseline) * 2);
-    transition: transform 200ms;
+    transition: var(--global-transition-transform);
     margin: calc(var(--global-baseline) * 2);
 }
 
@@ -603,7 +609,7 @@ input::placeholder {
     transform: scaleY(-1);
 }
 
-@media(min-width: 576px) {
+@media(min-width: 36em) {
     .c-arrow {
         --c-arrow-height: var(--c-data__item-content-height);
         margin-top: calc(var(--global-baseline) * 1.75);
@@ -744,7 +750,7 @@ input::placeholder {
     grid-column: span 12 !important;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
     .u-x-span-3-bp2 {
         grid-column: span 3 !important;
     }
@@ -770,7 +776,7 @@ input::placeholder {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 62em) {
     .u-x-span-3-bp3 {
         grid-column: span 3 !important;
     }
@@ -810,7 +816,7 @@ input::placeholder {
     grid-row: span 6 !important;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
     .u-y-span-2-bp2 {
         grid-row: span 2 !important;
     }
@@ -836,7 +842,7 @@ input::placeholder {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 62em) {
     .u-y-span-2-bp3 {
         grid-row: span 2 !important;
     }
@@ -941,7 +947,7 @@ input::placeholder {
     width: 83.3333333333% !important;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 36em) {
     .u-1-of-2-bp1 {
         width: 50% !important;
     }
@@ -977,7 +983,7 @@ input::placeholder {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
     .u-1-of-2-bp2 {
         width: 50% !important;
     }
@@ -1013,7 +1019,7 @@ input::placeholder {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 62em) {
     .u-1-of-2-bp3 {
         width: 50% !important;
     }
@@ -1049,7 +1055,7 @@ input::placeholder {
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 75em) {
     .u-1-of-2-bp4 {
         width: 50% !important;
     }
