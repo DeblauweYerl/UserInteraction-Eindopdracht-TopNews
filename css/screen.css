@@ -12,9 +12,12 @@
     --global-color-alpha-dark: #990000;
     --global-color-alpha-x-dark: #880000;
     --global-color-alpha-xx-dark: #550000;
+    --global-color-alpha-xxx-dark: #220000;
+
+    --global-color-error: var(--global-color-alpha-xxx-dark);
     
     /* borders */
-    --global-border-input: 2px solid var(--global-color-alpha-dark);
+    --global-border-input: 3px solid var(--global-color-alpha-dark);
     --global-border-light: 2px solid var(--global-color-neutral-light);
 
     --global-border-color-light: var(--global-color-neutral-light);
@@ -295,33 +298,6 @@ input::placeholder {
 }
 
 /*
-    Objects: section
-    ---
-    Creates vertical whitespace between adjacent sections inside a row
-*/
-
-.o-section {
-    position: relative;
-}
-
-.o-section + .o-section {
-    padding-top: var(--global-whitespace-md);
-}
-
-@media (min-width: 48em) {
-    .o-section--lg + .o-section--lg,
-    .o-section--xl + .o-section--xl {
-        padding-top: var(--global-whitespace-md);
-    }
-}
-
-@media (min-width: 62em) {
-    .o-section--xl + .o-section--xl {
-        padding-top: var(--global-whitespace-2xl);
-    }
-}
-
-/*
     Objects: Layout
     ---
     The layout object provides us with a column-style layout system. This object
@@ -466,9 +442,11 @@ input::placeholder {
 */
 
 .c-input {
+    --input-border-color: var(--global-color-alpha-dark);
     font-family: dinosaur;
     background-color: var(--global-color-alpha-dark);
     border: var(--global-border-input);
+    border-color: var(--input-border-color);
     border-radius: var(--global-border-radius);
     padding: calc(var(--global-baseline) * 1.5) var(--global-baseline);
     color: #F7EAFE;
@@ -477,11 +455,25 @@ input::placeholder {
 }
 
 .c-input:focus {
-    border-color: var(--global-border-color-light);
+    --input-border-color: var(--global-border-color-light);
 }
 
 .c-input__text {
     font-size: var(--global-fontsize-md);
+}
+
+.c-input__error {
+    position: absolute;
+    top: calc(var(--global-baseline) * -3.5);
+    right: 0;
+    padding-right: var(--global-baseline);
+    color: var(--global-color-error);
+    font-weight: var(--global-fontweight-semibold);
+    opacity: 0;
+}
+
+.has-error > .c-input {
+    --input-border-color: var(--global-color-error);
 }
 
 
@@ -496,6 +488,11 @@ input::placeholder {
     font-size: var(--global-fontsize-md);
     top: calc(var(--global-baseline) * -4);
     padding-left: var(--global-baseline);
+}
+
+.has-error > .c-label {
+    color: var(--global-color-error);
+    font-weight: var(--global-fontweight-semibold);
 }
 
 
@@ -540,7 +537,6 @@ input::placeholder {
     height: var(--c-data__item-height);
     background-color: var(--global-color-alpha-dark);
     border-radius: var(--global-border-radius-sm);
-    display: flex;
     overflow: hidden;
     transition: var(--global-transition-height);
 }
@@ -571,7 +567,6 @@ input::placeholder {
 
 @media(min-width: 36em) {
     .c-data__item {
-        /* margin-bottom: var(--global-whitespace-sm); */
         --c-data__item-content-height: calc(var(--global-baseline) * 3);
     }
 
@@ -880,7 +875,7 @@ input::placeholder {
 }
 
 .u-align-center {
-    margin: 0 auto!;
+    margin: 0 auto !important;
 }
 
 /*
@@ -1096,10 +1091,12 @@ input::placeholder {
 \*------------------------------------*/
 
 /*
-    Change the theme using CSS vars.
+    visibility
 */
 
-/* Night version: just switch the light and dark vars */
+.is-visible {
+    opacity: 1;
+}
 
 /*------------------------------------*\
 #MEDIA
