@@ -8,6 +8,7 @@ let getAPIs = async function(){
     let url;
     for (var category in categories) {
         url = `https://newsapi.org/v2/top-headlines?category=${category}&apiKey=cc26c03f571849f18a51b99646a7982c`;
+
         await fetchFunction(url, category);
     }
     showResults();
